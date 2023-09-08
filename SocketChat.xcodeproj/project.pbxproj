@@ -13,6 +13,15 @@
 		053BE0182AAABEEB009504A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053BE0162AAABEEB009504A5 /* Main.storyboard */; };
 		053BE01A2AAABEEC009504A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053BE0192AAABEEC009504A5 /* Assets.xcassets */; };
 		053BE01D2AAABEEC009504A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */; };
+		053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0242AAAC1BF009504A5 /* SocketHandler.swift */; };
+		053BE0282AAAC213009504A5 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 053BE0272AAAC213009504A5 /* SocketIO */; };
+		053BE02B2AAAC23F009504A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02A2AAAC23F009504A5 /* Message.swift */; };
+		053BE0312AAAC29D009504A5 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BE02C2AAAC29D009504A5 /* MessageCell.xib */; };
+		053BE0322AAAC29D009504A5 /* UITableView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */; };
+		053BE0332AAAC29D009504A5 /* UserStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */; };
+		053BE0342AAAC29D009504A5 /* UserStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */; };
+		053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0302AAAC29D009504A5 /* MessageCell.swift */; };
+		053BE0382AAAC3BE009504A5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 053BE0372AAAC3BE009504A5 /* MessageKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +33,13 @@
 		053BE0192AAABEEC009504A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		053BE01C2AAABEEC009504A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053BE01E2AAABEEC009504A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		053BE0242AAAC1BF009504A5 /* SocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHandler.swift; sourceTree = "<group>"; };
+		053BE02A2AAAC23F009504A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		053BE02C2AAAC29D009504A5 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+extension.swift"; sourceTree = "<group>"; };
+		053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatusCell.swift; sourceTree = "<group>"; };
+		053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserStatusCell.xib; sourceTree = "<group>"; };
+		053BE0302AAAC29D009504A5 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053BE0282AAAC213009504A5 /* SocketIO in Frameworks */,
+				053BE0382AAAC3BE009504A5 /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +74,46 @@
 		053BE00F2AAABEEB009504A5 /* SocketChat */ = {
 			isa = PBXGroup;
 			children = (
+				053BE03A2AAAC4E4009504A5 /* Extension */,
+				053BE0392AAAC4D7009504A5 /* Chat */,
+				053BE0292AAAC22A009504A5 /* DataModel */,
 				053BE0102AAABEEB009504A5 /* AppDelegate.swift */,
 				053BE0122AAABEEB009504A5 /* SceneDelegate.swift */,
 				053BE0142AAABEEB009504A5 /* ViewController.swift */,
+				053BE0242AAAC1BF009504A5 /* SocketHandler.swift */,
 				053BE0162AAABEEB009504A5 /* Main.storyboard */,
 				053BE0192AAABEEC009504A5 /* Assets.xcassets */,
 				053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */,
 				053BE01E2AAABEEC009504A5 /* Info.plist */,
 			);
 			path = SocketChat;
+			sourceTree = "<group>";
+		};
+		053BE0292AAAC22A009504A5 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				053BE02A2AAAC23F009504A5 /* Message.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		053BE0392AAAC4D7009504A5 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				053BE0302AAAC29D009504A5 /* MessageCell.swift */,
+				053BE02C2AAAC29D009504A5 /* MessageCell.xib */,
+				053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */,
+				053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		053BE03A2AAAC4E4009504A5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +132,10 @@
 			dependencies = (
 			);
 			name = SocketChat;
+			packageProductDependencies = (
+				053BE0272AAAC213009504A5 /* SocketIO */,
+				053BE0372AAAC3BE009504A5 /* MessageKit */,
+			);
 			productName = SocketChat;
 			productReference = 053BE00D2AAABEEB009504A5 /* SocketChat.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +164,10 @@
 				Base,
 			);
 			mainGroup = 053BE0042AAABEEB009504A5;
+			packageReferences = (
+				053BE0262AAAC213009504A5 /* XCRemoteSwiftPackageReference "socket" */,
+				053BE0362AAAC3BE009504A5 /* XCRemoteSwiftPackageReference "MessageKit" */,
+			);
 			productRefGroup = 053BE00E2AAABEEB009504A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				053BE01D2AAABEEC009504A5 /* LaunchScreen.storyboard in Resources */,
+				053BE0342AAAC29D009504A5 /* UserStatusCell.xib in Resources */,
+				053BE0312AAAC29D009504A5 /* MessageCell.xib in Resources */,
 				053BE01A2AAABEEC009504A5 /* Assets.xcassets in Resources */,
 				053BE0182AAABEEB009504A5 /* Main.storyboard in Resources */,
 			);
@@ -139,7 +198,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				053BE0152AAABEEB009504A5 /* ViewController.swift in Sources */,
+				053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */,
+				053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */,
+				053BE02B2AAAC23F009504A5 /* Message.swift in Sources */,
+				053BE0322AAAC29D009504A5 /* UITableView+extension.swift in Sources */,
 				053BE0112AAABEEB009504A5 /* AppDelegate.swift in Sources */,
+				053BE0332AAAC29D009504A5 /* UserStatusCell.swift in Sources */,
 				053BE0132AAABEEB009504A5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +422,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		053BE0262AAAC213009504A5 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		053BE0362AAAC3BE009504A5 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		053BE0272AAAC213009504A5 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 053BE0262AAAC213009504A5 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+		053BE0372AAAC3BE009504A5 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 053BE0362AAAC3BE009504A5 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 053BE0052AAABEEB009504A5 /* Project object */;
 }

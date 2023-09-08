@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "inputbaraccessoryview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nathantannar4/InputBarAccessoryView",
+      "state" : {
+        "revision" : "17ced92a5dccb36512b408b6276353631d7cbe57",
+        "version" : "6.3.0"
+      }
+    },
+    {
+      "identity" : "messagekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MessageKit/MessageKit",
+      "state" : {
+        "revision" : "1993e8e90d4e9a61b8d9bc8ceb733964ce943376",
+        "version" : "4.2.0"
+      }
+    },
+    {
+      "identity" : "socket.io-client-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/socketio/socket.io-client-swift",
+      "state" : {
+        "branch" : "master",
+        "revision" : "175da8b5156f6b132436f0676cc84c2f6a766b6e"
+      }
+    },
+    {
+      "identity" : "starscream",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/daltoniam/Starscream",
+      "state" : {
+        "revision" : "ac6c0fc9da221873e01bd1a0d4818498a71eef33",
+        "version" : "4.0.6"
+      }
+    }
+  ],
+  "version" : 2
+}
