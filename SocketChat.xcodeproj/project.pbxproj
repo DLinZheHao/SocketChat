@@ -22,6 +22,8 @@
 		053BE0342AAAC29D009504A5 /* UserStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */; };
 		053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0302AAAC29D009504A5 /* MessageCell.swift */; };
 		053BE0382AAAC3BE009504A5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 053BE0372AAAC3BE009504A5 /* MessageKit */; };
+		053BE03C2AAAC661009504A5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03B2AAAC661009504A5 /* ChatViewController.swift */; };
+		053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatusCell.swift; sourceTree = "<group>"; };
 		053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserStatusCell.xib; sourceTree = "<group>"; };
 		053BE0302AAAC29D009504A5 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		053BE03B2AAAC661009504A5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackInputBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				053BE02C2AAAC29D009504A5 /* MessageCell.xib */,
 				053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */,
 				053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */,
+				053BE03B2AAAC661009504A5 /* ChatViewController.swift */,
+				053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -202,8 +208,10 @@
 				053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */,
 				053BE02B2AAAC23F009504A5 /* Message.swift in Sources */,
 				053BE0322AAAC29D009504A5 /* UITableView+extension.swift in Sources */,
+				053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */,
 				053BE0112AAABEEB009504A5 /* AppDelegate.swift in Sources */,
 				053BE0332AAAC29D009504A5 /* UserStatusCell.swift in Sources */,
+				053BE03C2AAAC661009504A5 /* ChatViewController.swift in Sources */,
 				053BE0132AAABEEB009504A5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
