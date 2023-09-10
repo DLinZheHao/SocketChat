@@ -25,7 +25,6 @@
 		053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */; };
 		053BE0412AAACC85009504A5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0402AAACC85009504A5 /* ChatModel.swift */; };
 		053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */; };
-		053BE0522AAD55D3009504A5 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 053BE0512AAD55D3009504A5 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 		053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActionHandler.swift; sourceTree = "<group>"; };
 		053BE04F2AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		053BE0502AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		053BE0512AAD55D3009504A5 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 		053BE0042AAABEEB009504A5 = {
 			isa = PBXGroup;
 			children = (
-				053BE0512AAD55D3009504A5 /* .gitignore */,
 				053BE00F2AAABEEB009504A5 /* SocketChat */,
 				053BE00E2AAABEEB009504A5 /* Products */,
 			);
@@ -193,7 +190,6 @@
 				053BE0342AAAC29D009504A5 /* UserStatusCell.xib in Resources */,
 				053BE0312AAAC29D009504A5 /* MessageCell.xib in Resources */,
 				053BE01A2AAABEEC009504A5 /* Assets.xcassets in Resources */,
-				053BE0522AAD55D3009504A5 /* .gitignore in Resources */,
 				053BE0182AAABEEB009504A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
