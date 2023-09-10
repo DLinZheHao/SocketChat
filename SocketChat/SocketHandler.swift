@@ -7,6 +7,7 @@
 
 import Foundation
 import SocketIO
+import UIKit
 
 class SocketHandler: NSObject {
     static let sharedInstance = SocketHandler()

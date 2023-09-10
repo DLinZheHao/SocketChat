@@ -15,7 +15,6 @@
 		053BE01D2AAABEEC009504A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */; };
 		053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0242AAAC1BF009504A5 /* SocketHandler.swift */; };
 		053BE0282AAAC213009504A5 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 053BE0272AAAC213009504A5 /* SocketIO */; };
-		053BE02B2AAAC23F009504A5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02A2AAAC23F009504A5 /* Message.swift */; };
 		053BE0312AAAC29D009504A5 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BE02C2AAAC29D009504A5 /* MessageCell.xib */; };
 		053BE0322AAAC29D009504A5 /* UITableView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */; };
 		053BE0332AAAC29D009504A5 /* UserStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */; };
@@ -24,6 +23,8 @@
 		053BE0382AAAC3BE009504A5 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 053BE0372AAAC3BE009504A5 /* MessageKit */; };
 		053BE03C2AAAC661009504A5 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03B2AAAC661009504A5 /* ChatViewController.swift */; };
 		053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */; };
+		053BE0412AAACC85009504A5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0402AAACC85009504A5 /* ChatModel.swift */; };
+		053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +37,6 @@
 		053BE01C2AAABEEC009504A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		053BE01E2AAABEEC009504A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		053BE0242AAAC1BF009504A5 /* SocketHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHandler.swift; sourceTree = "<group>"; };
-		053BE02A2AAAC23F009504A5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		053BE02C2AAAC29D009504A5 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+extension.swift"; sourceTree = "<group>"; };
 		053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStatusCell.swift; sourceTree = "<group>"; };
@@ -44,6 +44,10 @@
 		053BE0302AAAC29D009504A5 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		053BE03B2AAAC661009504A5 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackInputBar.swift; sourceTree = "<group>"; };
+		053BE0402AAACC85009504A5 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActionHandler.swift; sourceTree = "<group>"; };
+		053BE04F2AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		053BE0502AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +84,6 @@
 			children = (
 				053BE03A2AAAC4E4009504A5 /* Extension */,
 				053BE0392AAAC4D7009504A5 /* Chat */,
-				053BE0292AAAC22A009504A5 /* DataModel */,
 				053BE0102AAABEEB009504A5 /* AppDelegate.swift */,
 				053BE0122AAABEEB009504A5 /* SceneDelegate.swift */,
 				053BE0142AAABEEB009504A5 /* ViewController.swift */,
@@ -89,16 +92,9 @@
 				053BE0192AAABEEC009504A5 /* Assets.xcassets */,
 				053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */,
 				053BE01E2AAABEEC009504A5 /* Info.plist */,
+				053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */,
 			);
 			path = SocketChat;
-			sourceTree = "<group>";
-		};
-		053BE0292AAAC22A009504A5 /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-				053BE02A2AAAC23F009504A5 /* Message.swift */,
-			);
-			path = DataModel;
 			sourceTree = "<group>";
 		};
 		053BE0392AAAC4D7009504A5 /* Chat */ = {
@@ -110,6 +106,7 @@
 				053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */,
 				053BE03B2AAAC661009504A5 /* ChatViewController.swift */,
 				053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */,
+				053BE0402AAACC85009504A5 /* ChatModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -168,6 +165,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 053BE0042AAABEEB009504A5;
 			packageReferences = (
@@ -205,8 +203,9 @@
 			files = (
 				053BE0152AAABEEB009504A5 /* ViewController.swift in Sources */,
 				053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */,
+				053BE0412AAACC85009504A5 /* ChatModel.swift in Sources */,
 				053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */,
-				053BE02B2AAAC23F009504A5 /* Message.swift in Sources */,
+				053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */,
 				053BE0322AAAC29D009504A5 /* UITableView+extension.swift in Sources */,
 				053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */,
 				053BE0112AAABEEB009504A5 /* AppDelegate.swift in Sources */,
@@ -223,6 +222,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				053BE0172AAABEEB009504A5 /* Base */,
+				053BE04F2AAD51F0009504A5 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -231,6 +231,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				053BE01C2AAABEEC009504A5 /* Base */,
+				053BE0502AAD51F0009504A5 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -242,6 +243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -302,6 +304,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

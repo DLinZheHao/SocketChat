@@ -11,7 +11,7 @@ import InputBarAccessoryView
 import Photos
 
 final class SlackInputBar: InputBarAccessoryView {
-    
+    var imageActionHandler: ImageActionHandler?
     var imageArray = [UIImage]()
     var imageURLArray = [URL]()
     
@@ -41,17 +41,21 @@ final class SlackInputBar: InputBarAccessoryView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setVC() {
+        imageActionHandler = ImageActionHandler(controller: controller!)
+    }
+    
     func configure() {
         let items = [
             makeButton(named: "ic_camera")
                 .onSelected { [self] in
                     $0.tintColor = .systemBlue
-                    getImageGo(type: 1)
+                    imageActionHandler?.getImageGo(type: 1)
             },
             makeButton(named: "ic_library")
                 .onSelected { [self] in
                     $0.tintColor = .systemBlue
-                    getImageGo(type: 2)
+                    imageActionHandler?.getImageGo(type: 2)
 
             },
             .flexibleSpace,
@@ -118,95 +122,6 @@ final class SlackInputBar: InputBarAccessoryView {
     }
     
 }
-
-extension SlackInputBar: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // 去拍照或者去相册选择图片
-    func getImageGo(type: Int) {
-        takingPicture = UIImagePickerController.init()
-        if type == 1 {
-            takingPicture.sourceType = .camera
-            // 拍照时是否显示工具栏
-            // takingPicture.showsCameraControls = true
-        } else if type == 2 {
-            takingPicture.sourceType = .photoLibrary
-        }
-        // 是否截取，设置为true在获取图片后可以将其截取成正方形
-        takingPicture.allowsEditing = false
-        takingPicture.delegate = self
-        controller!.present(takingPicture, animated: true, completion: nil)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-        takingPicture.dismiss(animated: true, completion: nil)
-
-        if let originalImage = info[.originalImage] as? UIImage {
-            self.imageArray.append(originalImage)
-            let handled = self.attachmentManager.handleInput(of: originalImage)
-            if !handled {
-                print("錯誤")
-            }
-            // 照片來自相簿
-            // image.image = originalImage
-            // getImageCompletionHandler!(originalImage)
-            if let imageURL = info[.imageURL] as? URL {
-                selectedFileURL = imageURL
-                self.imageURLArray.append(imageURL)
-                print("獲取相簿照片成功: \(imageURL)")
-            } else {
-                // 將照片存儲到相冊並獲取 URL
-                saveImageToPhotoAlbum(originalImage) { [weak self] photoUrl in
-                    self?.selectedFileURL = photoUrl!
-                    self?.imageURLArray.append(photoUrl!)
-                }
-            }
-        } else if let editedImage = info[.editedImage] as? UIImage {
-            // 拍攝的照片
-            self.imageArray.append(editedImage)
-//            let handled = self.attachmentManager.handleInput(of: editedImage)
-            // image.image = editedImage
-            // getImageCompletionHandler!(editedImage)
-            // 將照片存儲到相冊並獲取 URL
-            saveImageToPhotoAlbum(editedImage) { [weak self] photoUrl in
-                self?.selectedFileURL = photoUrl
-            }
-        }
-    }
-    func saveImageToPhotoAlbum(_ image: UIImage, completion: @escaping (URL?) -> Void) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
-        
-        // 在 `image(_:didFinishSavingWithError:contextInfo:)` 中獲取 URL
-        self.completionHandler = completion
-    }
-
-    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            print("無法存儲照片: \(error.localizedDescription)")
-            self.completionHandler?(nil)
-        } else {
-            // 從相冊中獲取最新的照片 URL
-            fetchNewestPhotoURL { url in
-                self.completionHandler?(url)
-            }
-        }
-    }
-
-    func fetchNewestPhotoURL(completion: @escaping (URL?) -> Void) {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
-        
-        if let asset = fetchResult.firstObject {
-            let options = PHContentEditingInputRequestOptions()
-            options.canHandleAdjustmentData = { _ in true }
-            
-            asset.requestContentEditingInput(with: options) { contentEditingInput, _ in
-                completion(contentEditingInput?.fullSizeImageURL)
-            }
-        } else {
-            completion(nil)
-        }
-    }
-    
-}
 extension SlackInputBar: AttachmentManagerDelegate {
     
     // MARK: - AttachmentManagerDelegate
@@ -226,10 +141,10 @@ extension SlackInputBar: AttachmentManagerDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let albumAction = UIAlertAction(title: "相簿", style: .default) { [weak self] (_) in
-            self?.getImageGo(type: 2)
+            self?.imageActionHandler?.getImageGo(type: 2)
         }
         let takePictureAction = UIAlertAction(title: "拍照", style: .default) { [weak self] (_)  in
-            self?.getImageGo(type: 1)
+            self?.imageActionHandler?.getImageGo(type: 1)
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         

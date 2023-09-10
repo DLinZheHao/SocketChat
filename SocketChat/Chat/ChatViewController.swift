@@ -9,30 +9,8 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 
-struct Member {
-  let name: String
-  let color: UIColor
-}
-
-struct Sender: SenderType {
-    var senderId: String
-    var displayName: String
-}
-
-struct MessageForm: MessageType {
-    var sender: SenderType
-    var messageId: String
-    var sentDate: Date
-    var kind: MessageKind
-}
-
-struct Media: MediaItem {
-    var url: URL?
-    var image: UIImage?
-    var placeholderImage: UIImage
-    var size: CGSize
-}
 class ChatViewController: MessagesViewController {
+    
     var curruentUserName: String = ""
     var currentUserID: String = ""
     
@@ -41,87 +19,30 @@ class ChatViewController: MessagesViewController {
     var messages: [MessageForm] = []
     // var messageDateArray: [MessageData] = []
     
-    let inputBarView = SlackInputBar()
-
+    var inputBarView = SlackInputBar()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-//        sender = Sender(senderId: currentUserID, displayName: curruentUserName)
-//        sender!.senderId = currentUserID
-//
-//        messageDateArray = findNewMessages(existingMessages: messageDateArray, newMessages: dataArray)
-//
-//        for messageData in self!.messageDateArray {
-//            if messageData.action == 0 {
-//                let sender = Sender(senderId: messageData.senderID, displayName: messageData.name)
-//                let message = MessageForm(sender: sender,
-//                                          messageId: messageData.id,
-//                                          sentDate: Date(timeIntervalSince1970: messageData.sendDate),
-//                                          kind: .text(messageData.textContent))
-//                self?.messages.append(message)
-//            } else if messageData.action == 1 {
-//                let sender = Sender(senderId: messageData.senderID, displayName: messageData.name)
-//                let url = URL(string: messageData.url)!
-//
-//                // 創建占位圖片消息
-//                let placeholderImage = UIImage.asset(.fridge)
-//                let placeholderMediaItem = Media(url: url,
-//                                                 image: nil,
-//                                                 placeholderImage: placeholderImage!,
-//                                                 size: .zero)
-//                let placeholderMessage = MessageForm(sender: sender,
-//                                                     messageId: messageData.id,
-//                                                     sentDate: Date(timeIntervalSince1970: messageData.sendDate),
-//                                                     kind: .photo(placeholderMediaItem))
-//                self?.messages.append(placeholderMessage)
-//
-//                ImageDownloader.shared.downloadImage(from: url) {[weak self] (image) in
-//                    if let image = image {
-//                        guard let self = self else { return }
-//
-//                        // 更新圖片消息
-//                        if let index = self.messages.firstIndex(where: { $0.messageId == messageData.id }) {
-//                            let mediaItem = Media(url: url,
-//                                                  image: image,
-//                                                  placeholderImage: placeholderImage!,
-//                                                  size: image.size)
-//                            let updatedMessage = MessageForm(sender: sender,
-//                                                             messageId: messageData.id,
-//                                                             sentDate: Date(timeIntervalSince1970: messageData.sendDate),
-//                                                             kind: .photo(mediaItem))
-//                            self.messages[index] = updatedMessage
-//                            self.messagesCollectionView.reloadData()
-//                        }
-//                    } else {
-//                        // 下载失败或图像无效
-//                        print("載入圖片失敗")
-//                    }
-//                }
-//
-//            }
-//        }
-//        messageDateArray = dataArray
-//        messagesCollectionView.reloadData()
-//        messagesCollectionView.scrollToLastItem(animated: true)
-//        messagesCollectionView.messageCellDelegate = self
-//
-//
-//        inputBarView.delegate = self
-//        inputBarView.controller = self
-//
-//        inputBarType = .custom(inputBarView)
-//        messagesCollectionView.messagesDataSource = self
-//        messagesCollectionView.messagesLayoutDelegate = self
-//        messagesCollectionView.messagesDisplayDelegate = self
-        
-        navigationItem.title = "留言"
+        inputBarView.controller = self
+        inputBarView.delegate = self
+        inputBarView.setVC()
+        setInputBarView()
     }
-
+    
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
-
+    
+}
+extension ChatViewController {
+    func setInputBarView() {
+        inputBarType = .custom(inputBarView)
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+    }
 }
 extension ChatViewController: MessagesDataSource {
     // MARK: 選擇目前用戶
