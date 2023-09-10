@@ -10,25 +10,28 @@ import MessageKit
 import InputBarAccessoryView
 
 class ChatViewController: MessagesViewController {
+    var viewModel = SocketChatViewModle()
+    var model: SocketCahtModel!
     
     var curruentUserName: String = ""
     var currentUserID: String = ""
     
-    var member: Member!
-    var sender: Sender?
-    var messages: [MessageForm] = []
-    // var messageDateArray: [MessageData] = []
-    
-    var inputBarView = SlackInputBar()
+    var sender: Sender!
+    var messages: [MessageForm]!
+    var inputBarView: SlackInputBar!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        inputBarView.controller = self
-        inputBarView.delegate = self
-        inputBarView.setVC()
+        SocketHandler.sharedInstance.establishConnection()
+        model = viewModel.socketChatModel
         setInputBarView()
+        inputBarView.setVC()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        askForNickname()
     }
     
     @objc func hideKeyboard() {
@@ -38,10 +41,42 @@ class ChatViewController: MessagesViewController {
 }
 extension ChatViewController {
     func setInputBarView() {
+        inputBarView = viewModel.setInputBarView()
+        inputBarView.controller = self
+        inputBarView.delegate = self
         inputBarType = .custom(inputBarView)
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+    }
+    
+    func askForNickname() {
+        let alertController = UIAlertController(title: "SocketChat", message: "Please enter a nickname:", preferredStyle: UIAlertController.Style.alert)
+        
+        alertController.addTextField(configurationHandler: nil)
+        
+        let OKAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { [self] (action) -> Void in
+            let textfield = alertController.textFields![0]
+            if textfield.text?.count == 0 {
+                askForNickname()
+            }
+            else {
+                print("使用者登入中")
+                model.nickname = textfield.text ?? ""
+                // currentUserID 暫時還沒有，需想想暫定方法
+                sender = Sender(senderId: "01", displayName: model.nickname)
+                
+                SocketHandler.sharedInstance.connectToServerWithNickname(nickname: model.nickname) { (userList) -> Void in
+                    // 暫時不需要 user
+                } messageCompletion: { (messages) in
+                    DispatchQueue.main.async {
+                        
+                    }
+                }
+            }
+        }
+        alertController.addAction(OKAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
 extension ChatViewController: MessagesDataSource {

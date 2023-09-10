@@ -30,6 +30,7 @@ class SocketHandler: NSObject {
     // 建立 server 連結
     func establishConnection() {
         mSocket.connect()
+        print("開始")
     }
 
     // 斷開 server 連接
@@ -40,30 +41,45 @@ class SocketHandler: NSObject {
     func connectToServerWithNickname(nickname: String, userListCompletion: (([[String: Any]]) -> Void)?, messageCompletion: (([Message]) -> Void)?) {
         mSocket.emit("connectUser", nickname)
         
-        if !isConnectSetting {
-            mSocket.on("userList") { ( dataArray, ack) -> Void in
-                userListCompletion?(dataArray[0] as? [[String: Any]] ?? [])
+        mSocket.on("LoginSuccess") { [weak self] _,_ in ()
+            print("有收到")
+            guard let isConnectSetting = self?.isConnectSetting else {
+                return
             }
-            
-            mSocket.on("messageLoadding") { (dataJson, socketAck) -> Void in
-                print(dataJson[0])
-                if let jsonString = dataJson[0] as? String {
-                    let jsonData = jsonString.data(using: .utf8)
-                    do {
-                        let messages = try JSONDecoder().decode([String: [Message]].self, from: jsonData!)
-                        if let messageArray = messages["messages"] {
-                            messageCompletion?(messageArray)
-                        }
-                    } catch {
-                        print("JSON 解碼失敗：\(error)")
-                    }
-                } else {
-                    print("找麻煩")
-                }
+            if !isConnectSetting {
+                self?.loadChatData(messageCompletion: messageCompletion)
+                self?.mSocket.emit("loadChatMessage")
             }
-            isConnectSetting = true
+            print("成功")
         }
-        mSocket.emit("loadChatMessage")
+        mSocket.on("LoginFall") { _,_ in
+            // 跳出 HUD 提示登入失敗
+            print("此用戶並不存在")
+        }
+    }
+    
+    func loadChatData(messageCompletion: (([Message]) -> Void)?) {
+        //            mSocket.on("userList") { ( dataArray, ack) -> Void in
+        //                userListCompletion?(dataArray[0] as? [[String: Any]] ?? [])
+        //            }
+        
+        mSocket.on("messageLoadding") { (dataJson, socketAck) -> Void in
+            print(dataJson[0])
+            if let jsonString = dataJson[0] as? String {
+                let jsonData = jsonString.data(using: .utf8)
+                do {
+                    let messages = try JSONDecoder().decode([String: [Message]].self, from: jsonData!)
+                    if let messageArray = messages["messages"] {
+                        messageCompletion?(messageArray)
+                    }
+                } catch {
+                    print("JSON 解碼失敗：\(error)")
+                }
+            } else {
+                print("找麻煩")
+            }
+        }
+        isConnectSetting = true
     }
     
     func exitChatWithNickname(nickname: String, completionHandler: () -> Void) {

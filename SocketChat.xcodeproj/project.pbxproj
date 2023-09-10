@@ -25,6 +25,8 @@
 		053BE03E2AAAC71D009504A5 /* SlackInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */; };
 		053BE0412AAACC85009504A5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0402AAACC85009504A5 /* ChatModel.swift */; };
 		053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */; };
+		053BE0542AAD571C009504A5 /* SocketChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */; };
+		053BE0562AAD59B2009504A5 /* SocketChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0552AAD59B2009504A5 /* SocketChatModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageActionHandler.swift; sourceTree = "<group>"; };
 		053BE04F2AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		053BE0502AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChatViewModel.swift; sourceTree = "<group>"; };
+		053BE0552AAD59B2009504A5 /* SocketChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChatModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 				053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */,
 				053BE01E2AAABEEC009504A5 /* Info.plist */,
 				053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */,
+				053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */,
+				053BE0552AAD59B2009504A5 /* SocketChatModel.swift */,
 			);
 			path = SocketChat;
 			sourceTree = "<group>";
@@ -202,7 +208,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				053BE0152AAABEEB009504A5 /* ViewController.swift in Sources */,
+				053BE0562AAD59B2009504A5 /* SocketChatModel.swift in Sources */,
 				053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */,
+				053BE0542AAD571C009504A5 /* SocketChatViewModel.swift in Sources */,
 				053BE0412AAACC85009504A5 /* ChatModel.swift in Sources */,
 				053BE0252AAAC1BF009504A5 /* SocketHandler.swift in Sources */,
 				053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */,

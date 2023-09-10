@@ -10,6 +10,8 @@ import Network
 
 class ViewController: UIViewController {
 
+    var socketChatViewModel = SocketChatViewModle()
+    
     var mSocket = SocketHandler.sharedInstance.getSocket()
     var nickname = ""
     var users: [[String: Any]] = []
