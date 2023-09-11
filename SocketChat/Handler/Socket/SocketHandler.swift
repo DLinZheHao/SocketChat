@@ -11,10 +11,10 @@ import UIKit
 
 class SocketHandler: NSObject {
     static let sharedInstance = SocketHandler()
-//    let socket = SocketManager(socketURL: URL(string: "http://localhost:8080")!, config: [.log(true), .compress])
+    //    let socket = SocketManager(socketURL: URL(string: "http://localhost:8080")!, config: [.log(true), .compress])
     let socket = SocketManager(socketURL: URL(string: "http://localhost:8080")!, config: [ .compress])
     var mSocket: SocketIOClient!
-
+    
     var isConnectSetting: Bool = false
     var isMessageSetting: Bool = false
     
@@ -22,7 +22,7 @@ class SocketHandler: NSObject {
         super.init()
         mSocket = socket.defaultSocket
     }
-
+    
     func getSocket() -> SocketIOClient {
         return mSocket
     }
@@ -32,17 +32,40 @@ class SocketHandler: NSObject {
         mSocket.connect()
         print("開始")
     }
-
+    
     // 斷開 server 連接
     func closeConnection() {
         mSocket.disconnect()
     }
     
-    func connectToServerWithNickname(nickname: String, userListCompletion: (([[String: Any]]) -> Void)?, messageCompletion: (([Message]) -> Void)?) {
-        mSocket.emit("connectUser", nickname)
+    func connectToServerWithNickname(nickname: String,
+                                     userListCompletion: (([[String: Any]]) -> Void)?,
+                                     messageCompletion: (([Message]) -> Void)?,
+                                     userCompletion: ((User) -> Void)?) {
         
-        mSocket.on("LoginSuccess") { [weak self] _,_ in ()
-            print("有收到")
+        mSocket.emit("connectUser", nickname)
+        loginSuccess(messageCompletion, userCompletion)
+        loginFall()
+        
+    }
+    
+    func loginSuccess(_ messageCompletion: (([Message]) -> Void)?,
+                      _ userCompletion: ((User) -> Void)?) {
+        // 登入成功，返回使用者資料
+        mSocket.on("LoginSuccess") { [weak self] (dataJson, socketAck) -> Void in
+            if let jsonString = dataJson[0] as? String {
+                let jsonData = jsonString.data(using: .utf8)
+                do {
+                    let user = try JSONDecoder().decode(User.self, from: jsonData!)
+                    print("使用者資料：\(user)")
+                    userCompletion?(user)
+                } catch {
+                    // 可以 HUD 提示
+                    print("JSON 解碼失敗：\(error)")
+                }
+            } else {
+                print("找麻煩")
+            }
             guard let isConnectSetting = self?.isConnectSetting else {
                 return
             }
@@ -50,8 +73,10 @@ class SocketHandler: NSObject {
                 self?.loadChatData(messageCompletion: messageCompletion)
                 self?.mSocket.emit("loadChatMessage")
             }
-            print("成功")
         }
+    }
+    
+    func loginFall() {
         mSocket.on("LoginFall") { _,_ in
             // 跳出 HUD 提示登入失敗
             print("此用戶並不存在")
@@ -64,7 +89,6 @@ class SocketHandler: NSObject {
         //            }
         
         mSocket.on("messageLoadding") { (dataJson, socketAck) -> Void in
-            print(dataJson[0])
             if let jsonString = dataJson[0] as? String {
                 let jsonData = jsonString.data(using: .utf8)
                 do {

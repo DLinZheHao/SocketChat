@@ -39,3 +39,13 @@ struct Message: Codable {
     let sendTime: String
 }
 
+// 第一版測試階段 model
+struct User: Codable {
+    let id: String
+    let nickname: String
+    
+    enum CodingKeys: String, CodingKey {
+            case id = "ID"
+            case nickname
+        }
+}

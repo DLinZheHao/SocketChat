@@ -16,7 +16,7 @@ class ChatViewController: MessagesViewController {
     var curruentUserName: String = ""
     var currentUserID: String = ""
     
-    var sender: Sender!
+    // var sender: Sender!
     var messages: [MessageForm]!
     var inputBarView: SlackInputBar!
     
@@ -55,24 +55,42 @@ extension ChatViewController {
         
         alertController.addTextField(configurationHandler: nil)
         
-        let OKAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { [self] (action) -> Void in
+        let OKAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { [weak self] (action) -> Void in
             let textfield = alertController.textFields![0]
             if textfield.text?.count == 0 {
-                askForNickname()
+                self?.askForNickname()
             }
             else {
                 print("使用者登入中")
-                model.nickname = textfield.text ?? ""
+                self?.model.nickname = textfield.text ?? ""
                 // currentUserID 暫時還沒有，需想想暫定方法
-                sender = Sender(senderId: "01", displayName: model.nickname)
+                // sender = Sender(senderId: "01", displayName: model.nickname)
                 
-                SocketHandler.sharedInstance.connectToServerWithNickname(nickname: model.nickname) { (userList) -> Void in
+                SocketHandler.sharedInstance.connectToServerWithNickname(nickname: self?.model.nickname ?? "") { (userList) -> Void in
                     // 暫時不需要 user
-                } messageCompletion: { (messages) in
+                } messageCompletion: { [weak self] (messages) in
                     DispatchQueue.main.async {
+                        // 把 server socket 傳輸的資料轉換成 messagekit chat 使用的資料型態
+                        print("聊天室資料：\(messages)")
                         
+                        // 因為會先確認使用者存在，確定存在後，才會進入到讀取 message 的部分
+                        for mesData in messages {
+                            let sendDate = DateHandler.shared.chatSendDateTrans(dateString: mesData.sendTime)
+                            let messageForm = MessageForm(sender: (self?.model.currentUser)!,
+                                                          messageId: "test",
+                                                          sentDate: sendDate,
+                                                          kind: .text(mesData.message))
+                            self?.model.messages.append(messageForm)
+                        }
+                        self?.messagesCollectionView.reloadData()
                     }
+                } userCompletion: { [weak self] userData in
+                    // 註冊聊天室 sender
+                    self?.model.currentUser = Sender(senderId: userData.id, displayName: userData.nickname)
+                    
                 }
+                
+                
             }
         }
         alertController.addAction(OKAction)
@@ -82,14 +100,15 @@ extension ChatViewController {
 extension ChatViewController: MessagesDataSource {
     // MARK: 選擇目前用戶
     var currentSender: MessageKit.SenderType {
-        return sender!
+        return model.currentUser!
     }
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {
-        return messages[indexPath.section]
+        return model.messages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
-        return messages.count
+        
+        return model.messages.count
     }
     
     func messageTopLabelHeight(
@@ -154,7 +173,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         in messagesCollectionView: MessagesCollectionView) {
             
             // 根據消息設定頭像
-            if let myMessage = message as? MessageForm, myMessage.sender.senderId == self.sender?.senderId {
+            if let myMessage = message as? MessageForm, myMessage.sender.senderId == model.currentUser?.senderId {
                 // 設定自定義的頭像
                 // avatarView.image = ...
                 // avatarView.set(avatar: Avatar(image: UIImage.asset(.user)))
@@ -169,7 +188,7 @@ extension ChatViewController: MessagesDisplayDelegate {
 extension ChatViewController: InputBarAccessoryViewDelegate {
     // 當用戶點擊發送按鈕時調用
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-       
+        
         inputBar.inputTextView.text = ""
         inputBarView.imageURLArray = []
         inputBarView.imageArray = []

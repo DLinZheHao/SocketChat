@@ -27,6 +27,7 @@
 		053BE04E2AAC9B23009504A5 /* ImageActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */; };
 		053BE0542AAD571C009504A5 /* SocketChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */; };
 		053BE0562AAD59B2009504A5 /* SocketChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053BE0552AAD59B2009504A5 /* SocketChatModel.swift */; };
+		0542CC762AAEE552001F51A3 /* DateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542CC752AAEE552001F51A3 /* DateHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		053BE0502AAD51F0009504A5 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChatViewModel.swift; sourceTree = "<group>"; };
 		053BE0552AAD59B2009504A5 /* SocketChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketChatModel.swift; sourceTree = "<group>"; };
+		0542CC752AAEE552001F51A3 /* DateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,17 +88,16 @@
 		053BE00F2AAABEEB009504A5 /* SocketChat */ = {
 			isa = PBXGroup;
 			children = (
+				0542CC712AAEA794001F51A3 /* Handler */,
+				0542CC702AAEA764001F51A3 /* TestChat */,
 				053BE03A2AAAC4E4009504A5 /* Extension */,
 				053BE0392AAAC4D7009504A5 /* Chat */,
 				053BE0102AAABEEB009504A5 /* AppDelegate.swift */,
 				053BE0122AAABEEB009504A5 /* SceneDelegate.swift */,
-				053BE0142AAABEEB009504A5 /* ViewController.swift */,
-				053BE0242AAAC1BF009504A5 /* SocketHandler.swift */,
 				053BE0162AAABEEB009504A5 /* Main.storyboard */,
 				053BE0192AAABEEC009504A5 /* Assets.xcassets */,
 				053BE01B2AAABEEC009504A5 /* LaunchScreen.storyboard */,
 				053BE01E2AAABEEC009504A5 /* Info.plist */,
-				053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */,
 				053BE0532AAD571C009504A5 /* SocketChatViewModel.swift */,
 				053BE0552AAD59B2009504A5 /* SocketChatModel.swift */,
 			);
@@ -106,10 +107,6 @@
 		053BE0392AAAC4D7009504A5 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				053BE0302AAAC29D009504A5 /* MessageCell.swift */,
-				053BE02C2AAAC29D009504A5 /* MessageCell.xib */,
-				053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */,
-				053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */,
 				053BE03B2AAAC661009504A5 /* ChatViewController.swift */,
 				053BE03D2AAAC71D009504A5 /* SlackInputBar.swift */,
 				053BE0402AAACC85009504A5 /* ChatModel.swift */,
@@ -123,6 +120,52 @@
 				053BE02D2AAAC29D009504A5 /* UITableView+extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0542CC702AAEA764001F51A3 /* TestChat */ = {
+			isa = PBXGroup;
+			children = (
+				053BE0302AAAC29D009504A5 /* MessageCell.swift */,
+				053BE02C2AAAC29D009504A5 /* MessageCell.xib */,
+				053BE02E2AAAC29D009504A5 /* UserStatusCell.swift */,
+				053BE02F2AAAC29D009504A5 /* UserStatusCell.xib */,
+				053BE0142AAABEEB009504A5 /* ViewController.swift */,
+			);
+			path = TestChat;
+			sourceTree = "<group>";
+		};
+		0542CC712AAEA794001F51A3 /* Handler */ = {
+			isa = PBXGroup;
+			children = (
+				0542CC742AAEE4E3001F51A3 /* Date */,
+				0542CC732AAEA7AE001F51A3 /* Socket */,
+				0542CC722AAEA7A3001F51A3 /* Image */,
+			);
+			path = Handler;
+			sourceTree = "<group>";
+		};
+		0542CC722AAEA7A3001F51A3 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				053BE04D2AAC9B23009504A5 /* ImageActionHandler.swift */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		0542CC732AAEA7AE001F51A3 /* Socket */ = {
+			isa = PBXGroup;
+			children = (
+				053BE0242AAAC1BF009504A5 /* SocketHandler.swift */,
+			);
+			path = Socket;
+			sourceTree = "<group>";
+		};
+		0542CC742AAEE4E3001F51A3 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				0542CC752AAEE552001F51A3 /* DateHandler.swift */,
+			);
+			path = Date;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0542CC762AAEE552001F51A3 /* DateHandler.swift in Sources */,
 				053BE0152AAABEEB009504A5 /* ViewController.swift in Sources */,
 				053BE0562AAD59B2009504A5 /* SocketChatModel.swift in Sources */,
 				053BE0352AAAC29D009504A5 /* MessageCell.swift in Sources */,

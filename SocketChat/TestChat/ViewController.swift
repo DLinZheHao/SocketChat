@@ -164,22 +164,23 @@ extension ViewController {
             else {
                 self.nickname = textfield.text ?? ""
                 
-                SocketHandler.sharedInstance.connectToServerWithNickname(nickname: self.nickname) { (userList) -> Void in
-                    DispatchQueue.main.async {
-                        if !userList.isEmpty {
-                            self.users = userList
-                            self.userListTableView.reloadData()
-                            self.userListTableView.isHidden = false
-                            self.messageTableView.reloadData()
-                            self.messageTableView.isHidden = false
-                        }
-                    }
-                } messageCompletion: { (messages) in
-                    DispatchQueue.main.async {
-                        self.chatMessages = messages
-                        self.messageTableView.reloadData()
-                    }
-                }
+//                SocketHandler.sharedInstance.connectToServerWithNickname(nickname: self.nickname) { (userList) -> Void in
+//                    DispatchQueue.main.async {
+//                        if !userList.isEmpty {
+//                            self.users = userList
+//                            self.userListTableView.reloadData()
+//                            self.userListTableView.isHidden = false
+//                            self.messageTableView.reloadData()
+//                            self.messageTableView.isHidden = false
+//                        }
+//                    }
+//                } messageCompletion: { (messages) in
+//                    DispatchQueue.main.async {
+//                        self.chatMessages = messages
+//                        self.messageTableView.reloadData()
+//                    }
+//                } userCompletion: {}
+                
             }
         }
         alertController.addAction(OKAction)
