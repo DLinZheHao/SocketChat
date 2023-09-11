@@ -76,10 +76,13 @@ extension ChatViewController {
                         // 因為會先確認使用者存在，確定存在後，才會進入到讀取 message 的部分
                         for mesData in messages {
                             let sendDate = DateHandler.shared.chatSendDateTrans(dateString: mesData.sendTime)
-                            let messageForm = MessageForm(sender: (self?.model.currentUser)!,
+                            let messageSender = Sender(senderId: "234", displayName: mesData.nickname)
+                            
+                            let messageForm = MessageForm(sender: messageSender,
                                                           messageId: "test",
                                                           sentDate: sendDate,
                                                           kind: .text(mesData.message))
+                            
                             self?.model.messages.append(messageForm)
                         }
                         self?.messagesCollectionView.reloadData()
